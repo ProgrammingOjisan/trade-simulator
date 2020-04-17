@@ -1,16 +1,16 @@
 <header>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <a href="/" class="navbar-brand">Trade Simultor</a>
-    <button class="navbar-toggler" type="button" data-toggler="collapse" data-target="#navmenu" aria-expanded="false" aria-controls="navmenu" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu" aria-expanded="false" aria-controls="navmenu" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navmenu">
         <div class="navbar-nav mr-auto">
-        <!-- メニュー右揃え用ブロック要素 -->
+         <!--メニュー右揃え用ブロック要素 -->
         </div>
         <div class="navbar-nav">
+            <%= link_to "Sing Up", signup_path, class: "nav-item nav-link" %>
             <a class="nav-item nav-link" href="">Login</a>
-            <a class="nav-item nav-link" href="">Signin</a>
         </div>
     </div>
     </nav>

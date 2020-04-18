@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+before_action :require_user_logged_out, only: [:new, :create]
+
   def index
     @users = User.order(id: :desc).page(params[:page]).per(8)
   end
@@ -12,14 +14,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new
     
     if @user.save
       flash[:success] = "Succeeded"
       redirect_to @user
     else
       flash.now[:danger] = "Failed"
-      render :new
+      render "new"
     end
   end
   

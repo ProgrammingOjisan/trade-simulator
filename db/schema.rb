@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_18_065931) do
+ActiveRecord::Schema.define(version: 2020_04_22_084636) do
+
+  create_table "prices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "stock_id", null: false
+    t.date "date"
+    t.float "price"
+    t.float "fluctuation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stock_id"], name: "index_prices_on_stock_id"
+  end
 
   create_table "stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
@@ -29,4 +39,5 @@ ActiveRecord::Schema.define(version: 2020_04_18_065931) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "prices", "stocks"
 end

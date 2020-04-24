@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_084636) do
+ActiveRecord::Schema.define(version: 2020_04_22_153746) do
+
+  create_table "conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "stock_id", null: false
+    t.float "buy_condition"
+    t.float "sell_condition"
+    t.integer "duration"
+    t.float "interest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stock_id"], name: "index_conditions_on_stock_id"
+  end
 
   create_table "prices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "stock_id", null: false
@@ -39,5 +50,6 @@ ActiveRecord::Schema.define(version: 2020_04_22_084636) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "conditions", "stocks"
   add_foreign_key "prices", "stocks"
 end

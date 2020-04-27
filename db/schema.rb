@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_153746) do
+ActiveRecord::Schema.define(version: 2020_04_26_134523) do
 
   create_table "conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "stock_id", null: false
-    t.float "buy_condition"
-    t.float "sell_condition"
+    t.decimal "buy_condition", precision: 5, scale: 2
+    t.decimal "sell_condition", precision: 5, scale: 2
     t.integer "duration"
-    t.float "interest"
+    t.decimal "interest", precision: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["stock_id", "buy_condition", "sell_condition", "duration"], name: "conditions_restrict_index", unique: true
     t.index ["stock_id"], name: "index_conditions_on_stock_id"
   end
 

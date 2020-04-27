@@ -1,0 +1,7 @@
+<h1>Conditions index</h1>
+<% @conditions.each do |condition| %>
+    <div>
+        <%= condition %>
+        <%= link_to condition.id, condition %>
+    </div>
+<% end %>

@@ -1,5 +1,5 @@
 module ApplicationHelper
-
+    
     def simulation(stock_id,buy_condition,sell_condition,duration)
         
         stockprices = Price.where(stock_id: stock_id).last(duration)
@@ -8,7 +8,7 @@ module ApplicationHelper
         start_capital = 100000
         current_captial = start_capital
         
-        return "couldn't find" if stockprices == []
+        return nil if !stockprices.present?
         
         stockprices.each_with_index do |stock, i|      
             next if stock.fluctuation == nil

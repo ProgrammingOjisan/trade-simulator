@@ -1,0 +1,39 @@
+<h1>Conditions index</h1>
+<% if @conditions.any? %>
+    <div class="row">
+    <% @conditions.each do |condition| %>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-header display-4 align-top text-center"><%= condition.stock.name %></div>
+                <div class="card-body font-weight-bold">
+                    <div>
+                        <p class="mb-0">INTEREST</p>
+                        <p class="h1 my-3 text-center text-<%= condition.interest >= 0 ? "success" : "danger" %>"><%= condition.interest*100 %> %</p>
+                    </div>
+                    <div>
+                        <table class="table table-borderless">
+                            <tr>
+                                <th class="pb-0">BUY</th>
+                                <td class="pb-0 text-<%= condition.buy_condition >= 0 ? "success" : "danger" %>"><%= condition.buy_condition*100 %> %</td>
+                            </tr>
+                            <tr>
+                                <th class="pb-0">SELL</th>
+                                <td class="pb-0 text-<%= condition.sell_condition >= 0 ? "success" : "danger" %>"><%= condition.sell_condition*100 %> %</td>
+                            </tr>
+                            <tr>
+                                <th class="pb-0">FOR</th>
+                                <td class="pb-0"><%= condition.duration %> DAYS</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="d-flex align-items-end">
+                            <%= link_to "Favorite", condition, class: "btn btn-danger btn-block mr-3" %>
+                            <%= link_to "Detail", condition, class: "btn btn-secondary btn-block" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
+    </div>
+    <%= paginate @conditions %>
+<% end %>

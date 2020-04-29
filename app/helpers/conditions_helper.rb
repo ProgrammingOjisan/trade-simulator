@@ -1,3 +1,2 @@
 module ConditionsHelper
-    
 end

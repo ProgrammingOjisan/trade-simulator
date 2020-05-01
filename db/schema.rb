@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_27_111054) do
+ActiveRecord::Schema.define(version: 2020_04_30_150337) do
 
   create_table "conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "stock_id", null: false
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 2020_04_27_111054) do
     t.datetime "updated_at", null: false
     t.index ["stock_id", "buy_condition", "sell_condition", "duration"], name: "conditions_restrict_index", unique: true
     t.index ["stock_id"], name: "index_conditions_on_stock_id"
+  end
+
+  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "condition_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["condition_id"], name: "index_favorites_on_condition_id"
+    t.index ["user_id", "condition_id"], name: "index_favorites_on_user_id_and_condition_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "prices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -52,5 +62,7 @@ ActiveRecord::Schema.define(version: 2020_04_27_111054) do
   end
 
   add_foreign_key "conditions", "stocks"
+  add_foreign_key "favorites", "conditions"
+  add_foreign_key "favorites", "users"
   add_foreign_key "prices", "stocks"
 end

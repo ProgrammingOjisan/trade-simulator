@@ -19,7 +19,7 @@ before_action :require_user_logged_out, only: [:new, :create]
   def destroy
     session[:user_id] = nil
     flash[:success] = "Logged out"
-    redirect_to root_url
+    redirect_to login_url
   end
   
   private

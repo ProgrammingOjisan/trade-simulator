@@ -1,7 +1,7 @@
 class ConditionsController < ApplicationController
   def index
     @stocks = Stock.all
-    @conditions = Condition.order(id: :desc).page(params[:page]).per(6)
+    @conditions = Condition.order(id: :desc).page(params[:page]).per(9)
   end
 
   def show

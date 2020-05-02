@@ -8,7 +8,8 @@ class Condition < ApplicationRecord
     validates :interest, numericality: true, allow_nil: true
     validates :stock_id,  uniqueness: { scope: [:buy_condition, :sell_condition, :duration]  }
     belongs_to :stock
-    has_many :condition, dependent: :destroy
+    has_many :favorites, dependent: :destroy
+    has_many :favorited, through: :favorites, source: :user
     
     before_save :set_interest
 

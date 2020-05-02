@@ -1,6 +1,8 @@
 class User < ApplicationRecord
     before_save { self.email.downcase! }
     has_secure_password
+    has_many :favorites, dependent: :destroy
+    has_many :favoriting, through: :favorites, source: :condition
     has_many :condition, dependent: :destroy
     validates :name, presence: true, length: { maximum: 20 }
     validates :email, presence: true, length: { maximum: 255 },
@@ -15,12 +17,12 @@ class User < ApplicationRecord
     end
 
     def unfavorite(condition)
-        favorite = self.favorites.find_by(micropost_id: condition)
+        favorite = self.favorites.find_by(condition_id: condition)
         favorite.destroy if favorite
     end
 
-    def favorites?(condition)
-        self.favorites.include?(condition)
+    def favorite?(condition)
+        self.favoriting.include?(condition)
     end
 
 end

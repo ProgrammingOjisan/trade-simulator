@@ -4,7 +4,9 @@
         <% @users.each do |user| %>
             <div class="col-sm-3 px-3 pb-3">
                 <div class="card">
-                    <img class="card-img-top" src="<%= gravatar_url(user, size: 300) %>" alt="">
+                    <div class="p-4">
+                        <img class="card-img-top rounded-circle img-border" src="<%= gravatar_url(user, size: 300) %>" alt="">
+                    </div>
                     <div class="card-body px-25">
                         <h5 class="card-title">
                             <%= user.name%>

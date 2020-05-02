@@ -7,6 +7,7 @@ before_action :require_user_logged_out, only: [:new, :create]
 
   def show
     @user = User.find(params[:id])
+    @favoritings = @user.favoriting.order(id: :desc).page(params[:page]).per(4)
   end
 
   def new

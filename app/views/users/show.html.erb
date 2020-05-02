@@ -1,8 +1,10 @@
 <h1><%= @user.name%>'s page</h1>
 <div class="row">
-    <aside class="col-sm-3">
+    <aside class="col-sm-3 m-0">
         <div class="card">
-            <img class="card-img-top" src="<%= gravatar_url(@user, size: 300) %>" alt="">
+            <div class="p-4">
+                <img class="card-img-top rounded-circle img-border" src="<%= gravatar_url(@user, size: 300) %>" alt="">
+            </div>
             <div class="card-body">
                 <h5 class="card-title">
                     <%= @user.name%>
@@ -11,7 +13,7 @@
             </div>
         </div>
     </aside>
-    <main class="col-sm-9 bg-danger">
-        after creating favorite
+    <main class="col-sm-9 pl-3 m-0">
+        <%= render "conditions/conditions", conditions: @favoritings, column: 2 %>
     </main>
 </div>

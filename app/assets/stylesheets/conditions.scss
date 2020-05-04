@@ -16,3 +16,15 @@ select {
 .display-4{
     font-size: 40px;
 }
+
+th > p {
+    font-size: 16px;
+    color: gray;
+    margin-bottom: 0;
+}
+
+.thead-result{
+    color: white;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}

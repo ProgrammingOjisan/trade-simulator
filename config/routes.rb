@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get 'favorites/create'
-  get 'favorites/destroy'
     root to: "conditions#new"
-    
     get 'signup', to: "users#new"
     get 'login', to: "sessions#new"
     post 'login', to: "sessions#create"

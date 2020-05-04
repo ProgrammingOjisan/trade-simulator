@@ -13,7 +13,8 @@ class ConditionsController < ApplicationController
 
   def new
     set_form_datalist
-    @condition = Condition.new(stock_id:1, buy_condition: -0.03, sell_condition: 0.05, duration: 10)
+    @condition = Condition.new(stock_id:1, buy_condition: -0.025, sell_condition: 0.03, duration: 30)
+    @chart = {"2018'-10-1" => 10, "2018-10-02" => 20}
   end
 
   def create
@@ -28,7 +29,7 @@ class ConditionsController < ApplicationController
         @preview_mode = true
         render :new
     else
-        @condition.interest = @results[2] if @results
+        @condition.interest = @results[2][0] if @results
         if @condition.save
             flash[:success] = "saved"
             redirect_to conditions_url

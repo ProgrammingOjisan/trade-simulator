@@ -1,28 +1,28 @@
 # User sample
 user_name = [
-        "Aneesah_Ayala",
-        "Karson_Hobbs",
-        "Usman_Wright",
-        "Deacon_Bernard",
-        "Chase_Metcalfe",
-        "Shreya_Tanner",
-        "Tudor_Mcmillan",
-        "Husnain_Salazar",
-        "Dianne_Avery",
-        "Amy-Leigh_Villanueva",
-        "Daniyal_Lowry",
-        "Anish_Salter",
-        "Nadeem_Hendrix",
-        "April_Garner",
-        "Bonita_Cooke",
-        "Ellouise_Martins",
-        "Emily-Rose_Rooney",
-        "Phyllis_Webber",
-        "Lennon_Garcia",
-        "Roshan_Barton"
+        "Aneesah",
+        "Karson",
+        "Usman",
+        "Deacon",
+        "Chase",
+        "Shreya",
+        "Tudor",
+        "Husnain",
+        "Dianne",
+        "AmyLeigh",
+        "Daniyal",
+        "Anish",
+        "Nadeem",
+        "April",
+        "Bonita",
+        "Ellouise",
+        "Emily-Rose",
+        "Phyllis",
+        "Lennon",
+        "Roshan"
     ]
 user_name.each_with_index do |name, i|    
-    User.create(name: (name + ((( i + 1 ) * 11 + 3) % 100).to_s), email: "user"+i.to_s+"@test.com", password: "password"+i.to_s)  
+    User.create(name: (name + "_" + ((( i + 1 ) * 11 + 3) % 100).to_s), email: "user"+i.to_s+"@test.com", password: "password"+i.to_s)  
 end
 
 # Stock sample
@@ -56,8 +56,20 @@ stock_name.each_with_index do |name, i|
         Condition.create(stock_id: i+1, buy_condition: -0.015, sell_condition: 0.03, duration: 30)
         Condition.create(stock_id: i+1, buy_condition: 0.02, sell_condition: -0.025, duration: 30)
         Condition.create(stock_id: i+1, buy_condition: -0.02, sell_condition: -0.01, duration: 30)
+        Condition.create(stock_id: i+1, buy_condition: 0.015, sell_condition: 0.02, duration: 60)
+        Condition.create(stock_id: i+1, buy_condition: -0.02, sell_condition: -0.005, duration: 60)
         Condition.create(stock_id: i+1, buy_condition: 0.03, sell_condition: 0.02, duration: 90)
         Condition.create(stock_id: i+1, buy_condition: -0.01, sell_condition: -0.015, duration: 90)
         Condition.create(stock_id: i+1, buy_condition: 0.025, sell_condition: -0.03, duration: 90)
         Condition.create(stock_id: i+1, buy_condition: -0.02, sell_condition: -0.01, duration: 90)
+end
+
+
+# Favorite sample
+user_name.each_with_index do |name, i|
+    (1..Condition.all.length).each do |n|
+        if n % (i % 10 + 3) == 0
+            User.find( i + 1 ).favorites.create(condition_id: n)
+        end
+    end
 end

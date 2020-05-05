@@ -4,7 +4,7 @@ class User < ApplicationRecord
     has_many :favorites, dependent: :destroy
     has_many :favoriting, through: :favorites, source: :condition
     has_many :condition, dependent: :destroy
-    validates :name, presence: true, length: { maximum: 20 }
+    validates :name, presence: true, length: { maximum: 30 }
     validates :email, presence: true, length: { maximum: 255 },
                     format: { with: /\A[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\z/ },
                     uniqueness: { case_sensitive: false }

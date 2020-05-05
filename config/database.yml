@@ -49,12 +49,12 @@ test:
 #
 
 production:
-adapter: postgresql
-encoding: utf8mb4
-pool: 5
-database: trade_simulator_production
-username: trade_simulator
-password: <%= ENV['TRADE_SIMULATOR_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: utf8mb4
+  pool: 5
+  database: trade_simulator_production
+  username: trade_simulator
+  password: <%= ENV['TRADE_SIMULATOR_DATABASE_PASSWORD'] %>
 
 # production:
 #   <<: *default

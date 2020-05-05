@@ -61,4 +61,3 @@ password: <%= ENV['TRADE_SIMULATOR_DATABASE_PASSWORD'] %>
 #   database: trade_simulator_production
 #   username: trade_simulator
 #   password: <%= ENV['TRADE_SIMULATOR_DATABASE_PASSWORD'] %>
-

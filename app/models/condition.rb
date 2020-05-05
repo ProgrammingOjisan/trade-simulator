@@ -21,7 +21,7 @@ class Condition < ApplicationRecord
         if !interest
             results = simulation(self.stock_id, self.buy_condition, self.sell_condition, self.duration)
             if results
-                self.interest = results[2]
+                self.interest = results[2][0]
             end
         end
     end

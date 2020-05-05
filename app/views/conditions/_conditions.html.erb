@@ -8,7 +8,7 @@
                 <div class="card-body font-weight-bold">
                     <div>
                         <p class="mb-0">INTEREST</p>
-                        <p class="h1 my-3 text-center text-<%= condition.interest >= 0 ? "success" : "danger" %>"><%= condition.interest*100 %> %</p>
+                        <p class="h1 my-3 text-center text-<%= condition.interest >= 0 ? "success" : "danger" %>"><%= (condition.interest*100).round(1) %> %</p>
                     </div>
                     <div>
                         <table class="table table-borderless">

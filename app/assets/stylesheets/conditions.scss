@@ -4,7 +4,10 @@
 
 @media screen and (max-width:576px){
     html {
-        font-size: 12px;
+        font-size: 16px;
+    }
+    .h4 {
+        font-size: 1rem;
     }
 }
 
@@ -13,7 +16,7 @@ select {
     // width: 100%;
     -webkit-appearance: button;
     appearance: button;
-    font-size: 2rem;
+    font-size: 1.8rem;
     border: 0px;
     border-bottom: 1px;
     border-style: solid;
@@ -22,7 +25,7 @@ select {
 }
 
 .btn-toppage {
-    font-size: 1.5rem;
+    font-size: 1rem;
     background-color: white;
     border: 1px;
     border-style: solid;
@@ -32,7 +35,7 @@ select {
 }
 
 .display-4{
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: normal !important;
 }
 

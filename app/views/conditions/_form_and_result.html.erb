@@ -1,11 +1,11 @@
 <div class="display-4 font-weight-bold">
     <%= form_with(model: @condition, local: true) do |f| %>
         <div class="form-group row text-sm-nowrap">
-            <div class="col-md-10 offset-md-2 mb-5 mb-md-4 mt-5">
+            <div class="col-md-10 offset-md-2 mb-5 mb-4 mt-5">
                 <%= render 'layouts/error_messages', model: f.object %>
                 <p class="m-0">もし</p>
             </div>
-            <div class="col-md-9 offset-1 offset-md-3 row mb-5 mb-md-4">
+            <div class="col-md-9 offset-1 offset-md-3 row mb-4">
                 <div class="mr-4">
                     <%= f.collection_select :stock_id, Stock.all, :id, :name, class: "form-control" %>
                 </div>
@@ -14,17 +14,17 @@
                 </div>
             </div>
 
-            <div class="col-md-9 offset-1 offset-md-3 row mb-5 mb-md-4">
+            <div class="col-md-9 offset-1 offset-md-3 row mb-4">
                 <div class="mr-4">
                     <%= f.select(:buy_condition, @condition_datalist, class: "form-control" ) %>
                 </div>
                 <div>
-                    <p class="mt-4">になったら買い、</p>
+                    <p class="mt-4">になったら買い</p>
                 </div>
             </div>
 
 
-            <div class="col-md-9 offset-1 offset-md-3 row mb-5 mb-md-4">
+            <div class="col-md-9 offset-1 offset-md-3 row mb-4">
                 <div class="mr-4">
                     <%= f.select(:sell_condition, @condition_datalist, class: "form-control" ) %>
                 </div>
@@ -34,7 +34,7 @@
             </div>
 
 
-            <div class="col-md-9 offset-1 offset-md-3 row mb-5 mb-md-4">
+            <div class="col-md-9 offset-1 offset-md-3 row mb-4">
                 <div class="mr-4">
                     <%= f.select(:duration, @duration_datalist, class: "form-control" ) %>
                 </div>

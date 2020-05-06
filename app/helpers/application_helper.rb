@@ -107,7 +107,8 @@ module ApplicationHelper
                 # profit_and_loss = valuation - start_capital
                 # interest = (valuation / start_capital) - 1
                 # annual_interest = (interest / duration) * 365.2425
-                return valuation, profit_and_loss, interest, valuation_log, start_capital, annual_interest            end
+                return valuation, profit_and_loss, interest, valuation_log, start_capital, annual_interest
+            end
         end
     end
     

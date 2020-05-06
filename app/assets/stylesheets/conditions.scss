@@ -5,16 +5,27 @@
 select {
     display: block;
     width: 100%;
-    font-size: 40px;
+    font-size: 45px;
+    border: 0px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: #bbb;
+    font-weight: bold;
 }
 
 .btn-toppage {
     font-size: 30px;
-    font-weight: bold;
+    background-color: white;
+    border: 1px;
+    border-style: solid;
+    border-color: black;
+    color: black;
+    
 }
 
 .display-4{
-    font-size: 40px;
+    font-size: 30px;
+    font-weight: normal !important;
 }
 
 th > p {
@@ -25,6 +36,6 @@ th > p {
 
 .thead-result{
     color: white;
-    background-color: #6c757d;
-    border-color: #6c757d;
+    background-color: #9f9f9f;
+    border: 0;
 }

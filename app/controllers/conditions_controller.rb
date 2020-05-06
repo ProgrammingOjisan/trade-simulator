@@ -19,7 +19,12 @@ class ConditionsController < ApplicationController
 
   def create
     set_form_datalist
-    @condition = Condition.new(condition_params)
+    existing_condition = Condition.find_by(stock_id: params[:condition][:stock_id], buy_condition: params[:condition][:buy_condition], sell_condition: params[:condition][:sell_condition], duration: params[:condition][:duration])
+    if existing_condition.present?
+      @condition = existing_condition
+    else
+      @condition = Condition.new(condition_params)
+    end
     @results = simulation(@condition.stock_id, @condition.buy_condition, @condition.sell_condition, @condition.duration)
 
     if @results.include? "Error"
@@ -63,7 +68,7 @@ class ConditionsController < ApplicationController
       end
     end
     
-    @duration_datalist = [["5営業日",5],["10営業日",10],["30営業日",30],["60営業日",60],["90営業日",90],]
+    @duration_datalist = [["10営業日",10],["30営業日",30],["60営業日",60],["90営業日",90],]
 
   end
 end

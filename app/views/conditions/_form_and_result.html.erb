@@ -1,42 +1,49 @@
 <div class="display-4 font-weight-bold">
     <%= form_with(model: @condition, local: true) do |f| %>
         <div class="form-group row text-sm-nowrap">
-            <div class="col-md-10 offset-md-2 mb-4 mt-5">
+            <div class="col-md-10 offset-md-2 mb-5 mb-md-4 mt-5">
                 <%= render 'layouts/error_messages', model: f.object %>
                 <p class="m-0">もし</p>
             </div>
-            <div class="col-md-4 offset-md-2 mr-0 mb-4 pr-0">
-                <%= f.collection_select :stock_id, Stock.all, :id, :name, class: "form-control" %>
+            <div class="col-md-9 offset-1 offset-md-3 row mb-5 mb-md-4">
+                <div class="mr-4">
+                    <%= f.collection_select :stock_id, Stock.all, :id, :name, class: "form-control" %>
+                </div>
+                <div>
+                    <p class="mt-4">が、</p>
+                </div>
             </div>
-            <div class="col-md-6 ml-0">
-                <p class="mt-4">が、</p>
+
+            <div class="col-md-9 offset-1 offset-md-3 row mb-5 mb-md-4">
+                <div class="mr-4">
+                    <%= f.select(:buy_condition, @condition_datalist, class: "form-control" ) %>
+                </div>
+                <div>
+                    <p class="mt-4">になったら買い、</p>
+                </div>
             </div>
 
 
-            <div class="col-md-4 offset-md-2 mr-0 mb-4 pr-0">
-                <%= f.select(:buy_condition, @condition_datalist, class: "form-control" ) %>
-            </div>
-            <div class="col-md-6 ml-0">
-                <p class="mt-4">になったら買い</p>
-            </div>
-
-
-            <div class="col-md-4 offset-md-2 mr-0 mb-4 pr-0">
-                <%= f.select(:sell_condition, @condition_datalist, class: "form-control" ) %>
-            </div>
-            <div class="col-md-6 ml-0">
-                <p class="mt-4">になったら売るを</p>
+            <div class="col-md-9 offset-1 offset-md-3 row mb-5 mb-md-4">
+                <div class="mr-4">
+                    <%= f.select(:sell_condition, @condition_datalist, class: "form-control" ) %>
+                </div>
+                <div>
+                    <p class="mt-4">になったら売るを</p>
+                </div>
             </div>
 
 
-            <div class="col-md-4 offset-md-2 mr-0 mb-5 pr-0">
-                <%= f.select(:duration, @duration_datalist, class: "form-control" ) %>
-            </div>
-            <div class="col-md-6 ml-0">
-                <p class="mt-4">くりかえしたら</p>
+            <div class="col-md-9 offset-1 offset-md-3 row mb-5 mb-md-4">
+                <div class="mr-4">
+                    <%= f.select(:duration, @duration_datalist, class: "form-control" ) %>
+                </div>
+                <div>
+                    <p class="mt-4">くりかえしたら</p>
+                </div>
             </div>
 
-            <%= f.submit "どうなる？", class: "col-md-4 offset-md-4 mb-5 btn btn-secondary btn-block btn-toppage", name: "preview" %>
+            <%= f.submit "どうなる？", class: "col-4 offset-4 mt-4 mb-5 btn btn-secondary btn-block btn-toppage", name: "preview" %>
 
             <% if @preview_mode %>
                 <div class="col-md-8 offset-md-2 mb-3" id="result">
@@ -76,7 +83,7 @@
                         </tr> 
                     </table>
                 </div>
-                <%= f.submit "条件を保存", class: "col-md-4 offset-md-4 btn btn-secondary btn-block btn-toppage" %>
+                <%= f.submit "条件を保存", class: "col-4 offset-4 mt-1 btn btn-secondary btn-block btn-toppage" %>
             <% end %>
         </div>
     <% end %>

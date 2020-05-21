@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     
     include ApplicationHelper
+    include ConditionsHelper
     include SessionsHelper
     
     private

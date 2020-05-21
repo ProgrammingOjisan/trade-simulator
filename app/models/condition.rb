@@ -13,7 +13,7 @@ class Condition < ApplicationRecord
     
     before_save :set_interest
 
-    
+    # Rspecを実行するためにprivateをコメントアウト
     # private
     
     def set_interest

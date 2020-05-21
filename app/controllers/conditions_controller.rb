@@ -1,4 +1,5 @@
 class ConditionsController < ApplicationController
+
   def index
     @stocks = Stock.all
     @conditions = Condition.order(id: :desc).page(params[:page]).per(9)
@@ -13,8 +14,7 @@ class ConditionsController < ApplicationController
 
   def new
     set_form_datalist
-    @condition = Condition.new(stock_id:1, buy_condition: -0.025, sell_condition: 0.03, duration: 30)
-    @chart = {"2018'-10-1" => 10, "2018-10-02" => 20}
+    @condition = Condition.new(stock_id:1, buy_condition: -0.01, sell_condition: 0.005, duration: 10)
   end
 
   def create
@@ -60,15 +60,12 @@ class ConditionsController < ApplicationController
     @condition_datalist = []
     (-50..50).reverse_each do |value|
       next if value == 0
-      value *= 0.5
+      value = (value * 0.1).round(1)
       if value > 0
-        @condition_datalist << ["＋#{value}%", (value / 100)]
+        @condition_datalist << ["＋#{value}%", (value / 100).round(3)]
       else
-        @condition_datalist << ["－#{value.abs}%", (value / 100)]
+        @condition_datalist << ["－#{value.abs}%", (value / 100).round(3)]
       end
     end
-    
-    @duration_datalist = [["10営業日",10],["30営業日",30],["60営業日",60],["90営業日",90],]
-
   end
 end

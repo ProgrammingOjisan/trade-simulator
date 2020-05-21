@@ -22,7 +22,7 @@
                             </tr>
                             <tr>
                                 <th class="pb-0">FOR</th>
-                                <td class="pb-0"><%= condition.duration %> DAYS</th>
+                                <td class="pb-0"><%= pluralize(condition.duration, "year").upcase %></th>
                             </tr>
                         </table>
                     </div>

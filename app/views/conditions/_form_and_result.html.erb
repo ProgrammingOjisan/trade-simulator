@@ -1,5 +1,11 @@
 <div class="display-4 font-weight-bold">
     <%= form_with(model: @condition, local: true) do |f| %>
+    <% Stock.all.each do |stock| %>
+	<template id="stock_<%= stock.id %>">
+		<%= f.select(:duration, set_duration_datalist(Price.where(stock_id: stock.id).length), class: "form-control") %>
+	</template>
+<% end %>
+
         <div class="form-group row text-sm-nowrap">
             <div class="col-md-10 offset-md-2 mb-5 mb-4 mt-5">
                 <%= render 'layouts/error_messages', model: f.object %>
@@ -7,7 +13,7 @@
             </div>
             <div class="col-md-9 offset-1 offset-md-3 row mb-4">
                 <div class="mr-4">
-                    <%= f.collection_select :stock_id, Stock.all, :id, :name, class: "form-control" %>
+                    <%= f.collection_select :stock_id, Stock.all, :id, :name, class: "form-control", id: "stock_id" %>
                 </div>
                 <div>
                     <p class="mt-4">が、</p>
@@ -35,11 +41,10 @@
 
 
             <div class="col-md-9 offset-1 offset-md-3 row mb-4">
-                <div class="mr-4">
-                    <%= f.select(:duration, @duration_datalist, class: "form-control" ) %>
+                <div id="duration_form">
                 </div>
                 <div>
-                    <p class="mt-4">くりかえしたら</p>
+                    <p class="ml-4 mt-4">くりかえしたら</p>
                 </div>
             </div>
 
@@ -87,10 +92,4 @@
             <% end %>
         </div>
     <% end %>
-    <!--favoriteボタン-->
-    <!--<% if @condition.id && current_user %>-->
-    <!--    <div class="col-md-4 offset-md-4 btn btn-secondary btn-block btn-toppage">-->
-    <!--        <%= render "favorites/favorite_button", condition: @condition %>-->
-    <!--    </div>-->
-    <!--<% end %>-->
-    </div>
+</div>

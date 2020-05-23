@@ -15,4 +15,4 @@ $(document).on('turbolinks:load', function() {
           $('#duration_form').after(selectedTemplate.html());
       };
   });
-});
+}); 

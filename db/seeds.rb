@@ -116,4 +116,3 @@ user_name.each_with_index do |name, i|
 end
 end
 puts "create sample #{benchmark_result}s"
-

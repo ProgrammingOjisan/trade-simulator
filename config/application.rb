@@ -48,4 +48,3 @@ module TradeSimulator
 
   end
 end
-

@@ -20,5 +20,4 @@ module ConditionsHelper
     	else []
     	end
     end
-    
 end

@@ -1,7 +1,12 @@
 module ApplicationHelper
     def simulation(stock_id,buy_condition,sell_condition,duration)
-        
-        stockdata = Price.where(stock_id: stock_id).last(duration)
+
+        return "Error! There are not any Stock Prices" if !Price.where(stock_id: stock_id).present?
+
+        latest_date = Price.where(stock_id: stock_id).last.date
+        start_date = latest_date.ago(duration.years)
+    	stockdata = Price.where(stock_id: stock_id, date: start_date..latest_date).order(:date)	
+
         start_capital = 1000000
         current_capital = [start_capital,start_capital]
         has_stock = [nil,nil]
@@ -10,11 +15,6 @@ module ApplicationHelper
         active_trade_log = valuation_log[0]
         passive_trade_log = valuation_log[1]
         
-        if !stockdata.present?
-            return "Error! Couldn't find Stock Prices"
-        elsif stockdata.count < duration
-            return "Error! Duration is too long. Please change it to "+Price.where(stock_id: stock_id).count.to_s+" days or less."
-        end
         
         stockdata.each_with_index do |daily_data, i|
 
@@ -101,12 +101,8 @@ module ApplicationHelper
                     valuation << check_valuation(has_stock[n], daily_data.price, current_capital[n])
                     profit_and_loss << valuation[n] - start_capital
                     interest << (valuation[n] / start_capital) - 1
-                    annual_interest << (interest[n] / duration) * 365.2425
+                    annual_interest << (interest[n] / (stockdata.last.date - stockdata.first.date + 1)) * 365.2425
                 end
-                # valuation = check_valuation(has_stock[0], daily_data.price, current_capital[0])
-                # profit_and_loss = valuation - start_capital
-                # interest = (valuation / start_capital) - 1
-                # annual_interest = (interest / duration) * 365.2425
                 return valuation, profit_and_loss, interest, valuation_log, start_capital, annual_interest
             end
         end

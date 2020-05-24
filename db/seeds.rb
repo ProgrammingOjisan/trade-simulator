@@ -1,3 +1,4 @@
+benchmark_result = Benchmark.realtime do
 # User sample
 user_name = [
         "Aneesah",
@@ -27,44 +28,84 @@ end
 
 # Stock sample
 stock_name = ["NIKKEI225", "TOPIX", "MOTHERS"]
+stock_code = ["^N225", "1306.T", "2516.T"]
 stock_name.each_with_index do |name, i|
-    Stock.create(name: name, code: "000"+( i + 1).to_s)
+    Stock.create(name: name, code: stock_code[i])
 end
 
+Stock.all.each do |stock|
+    logger = Logger.new("./api.log")
+    
+    base_url = "https://www.alphavantage.co/query?"
+    my_api_key = "LODEE8NFTIT9TIKT"
+    price_type = "TIME_SERIES_DAILY"
+    my_symbol = stock.code
+    output_size = "full"
 
-# Price sample
-d = Date.new(2020,4,1)
-stock_name.each_with_index do |name, i|
-    (1..90).each do |n|
-        if n % 7 == 0
-            price = ((n*n*-15) % 2000) + (20000 * ( i + 1 ) % 25000) + (n * 15)
-        elsif n % 17 == 0
-            price = ((n*n*-15) % 2000) + (20000 * ( i + 1 ) % 25000) + (n * 15)
-        else
-            price = ((n*n*50) % 2000) + (20000 * ( i + 1 ) % 25000) + (n * 15)
+    params = URI.encode_www_form({function: price_type, symbol: my_symbol, outputsize: output_size, apikey: my_api_key})
+    uri = URI.parse(base_url + params)
+    begin
+        response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |https|
+            https.open_timeout = 3
+            https.read_timeout = 10
+            https.get(uri.request_uri)
         end
-        Stock.find( i + 1 ).price.create(
-            date: d+n,
-            price: price
-        )
+        
+        case response
+        when Net::HTTPSuccess
+           api_result = JSON.parse(response.body)
+
+        when Net::HTTPRedirection
+            logger.warn("Redirection: code=#{response.code} messsage=#{response.message}")
+        else
+            logger.warn("Redirection: code=#{response.code} messsage=#{response.message}")
+        end
+        
+        rescue IOError => e
+            logger.error(e.message)
+            logger.error(e.message)
+        rescue JSON::ParserError => e
+            logger.error(e.message)
+        rescue => e
+            logger.error(e.message)
+    end
+    
+    
+    # DBへの保存処理
+    prices = api_result["Time Series (Daily)"]
+    prices.reverse_each do |key, price|
+        Price.find_or_create_by(stock_id: stock.id, date: Time.parse(key), price: price.dig("4. close"))
     end
 end
 
+
 # Condition sample
-stock_name.each_with_index do |name, i|
-        Condition.create(stock_id: i+1, buy_condition: 0.02, sell_condition: 0.01, duration: 30)
-        Condition.create(stock_id: i+1, buy_condition: -0.015, sell_condition: 0.03, duration: 30)
-        Condition.create(stock_id: i+1, buy_condition: 0.02, sell_condition: -0.025, duration: 30)
-        Condition.create(stock_id: i+1, buy_condition: -0.02, sell_condition: -0.01, duration: 30)
-        Condition.create(stock_id: i+1, buy_condition: 0.015, sell_condition: 0.02, duration: 60)
-        Condition.create(stock_id: i+1, buy_condition: -0.02, sell_condition: -0.005, duration: 60)
-        Condition.create(stock_id: i+1, buy_condition: 0.03, sell_condition: 0.02, duration: 90)
-        Condition.create(stock_id: i+1, buy_condition: -0.01, sell_condition: -0.015, duration: 90)
-        Condition.create(stock_id: i+1, buy_condition: 0.025, sell_condition: -0.03, duration: 90)
-        Condition.create(stock_id: i+1, buy_condition: -0.02, sell_condition: -0.01, duration: 90)
+Stock.all.each_with_index do |stock, i|
+
+    price_length = Price.where(stock_id: stock.id).length
+    if price_length >= 245*20
+        duration = 20
+    elsif price_length >= 245*10
+        duration = 10
+    elsif price_length >= 245*5
+        duration = 5
+    elsif price_length >= 245*3
+        duration = 3
+    elsif price_length >= 245*2
+        duration = 2
+    else
+        duration = 1
+    end
+
+    5.times do |j|
+        5.times do |k|
+            Condition.create(stock_id: i+1, buy_condition: 0.005*(i+1), sell_condition: 0.005*(k+1), duration: duration)
+            Condition.create(stock_id: i+1, buy_condition: -0.005*(i+1), sell_condition: 0.005*(k+1), duration: duration)
+            Condition.create(stock_id: i+1, buy_condition: 0.005*(i+1), sell_condition: -0.005*(k+1), duration: duration)
+            Condition.create(stock_id: i+1, buy_condition: -0.005*(i+1), sell_condition: -0.005*(k+1), duration: duration)
+        end    
+    end    
 end
-
-
 # Favorite sample
 user_name.each_with_index do |name, i|
     (1..Condition.all.length).each do |n|
@@ -73,3 +114,5 @@ user_name.each_with_index do |name, i|
         end
     end
 end
+end
+puts "create sample #{benchmark_result}s"

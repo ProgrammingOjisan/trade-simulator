@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
     
-    include ApplicationHelper
+    include TradeSimulation
     include ConditionsHelper
     include SessionsHelper
-    
+
     private
     
     def require_user_logged_in

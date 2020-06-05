@@ -70,10 +70,13 @@ Stock.all.each do |stock|
             logger.error(e.message)
     end
     
-    
     # DBへの保存処理
     prices = api_result["Time Series (Daily)"]
     prices.reverse_each do |key, price|
+
+        # 実行当日分データは時間帯により終値ではなく日中の価額になる場合があるので取得せずスキップ
+        break if key == Date.today.strftime("%Y-%m-%d")
+
         Price.find_or_create_by(stock_id: stock.id, date: Time.parse(key), price: price.dig("4. close"))
     end
 end

@@ -8,7 +8,7 @@ class ConditionsController < ApplicationController
   def show
     set_form_datalist
     @condition = Condition.find(params[:id])
-    @results = simulation(@condition.stock_id, @condition.buy_condition, @condition.sell_condition, @condition.duration)
+    @results = trade_simulation(@condition.stock_id, @condition.buy_condition, @condition.sell_condition, @condition.duration)
     @preview_mode = true
   end
 
@@ -25,7 +25,7 @@ class ConditionsController < ApplicationController
     else
       @condition = Condition.new(condition_params)
     end
-    @results = simulation(@condition.stock_id, @condition.buy_condition, @condition.sell_condition, @condition.duration)
+    @results = trade_simulation(@condition.stock_id, @condition.buy_condition, @condition.sell_condition, @condition.duration)
 
     if @results.include? "Error"
             flash.now[:danger] = @results

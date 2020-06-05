@@ -1,6 +1,7 @@
 require 'rails_helper'
+include TradeSimulation
 
-RSpec.describe ApplicationHelper, type: :helper do
+RSpec.describe Condition, type: :model do
     
     describe "trade simulation" do
         before do
@@ -21,7 +22,7 @@ RSpec.describe ApplicationHelper, type: :helper do
                 buy_condition = 0.1
                 sell_condition = 0.3
                 duration = 10
-                results = simulation(stock_id,buy_condition,sell_condition,duration)
+                results = trade_simulation(stock_id,buy_condition,sell_condition,duration)
                 expect(results[0][0]).to eq 2857100
             end            
         end
@@ -32,7 +33,7 @@ RSpec.describe ApplicationHelper, type: :helper do
                 buy_condition = 0.3
                 sell_condition = -0.3
                 duration = 10
-                results = simulation(stock_id,buy_condition,sell_condition,duration)
+                results = trade_simulation(stock_id,buy_condition,sell_condition,duration)
                 expect(results[0][0]).to eq 700000
             end            
         end
@@ -43,7 +44,7 @@ RSpec.describe ApplicationHelper, type: :helper do
                 buy_condition = -0.2
                 sell_condition = 0.3
                 duration = 10
-                results = simulation(stock_id,buy_condition,sell_condition,duration)
+                results = trade_simulation(stock_id,buy_condition,sell_condition,duration)
                 expect(results[0][0]).to eq 286000
             end            
         end
@@ -54,7 +55,7 @@ RSpec.describe ApplicationHelper, type: :helper do
                 buy_condition = -0.3
                 sell_condition = -0.5
                 duration = 10
-                results = simulation(stock_id,buy_condition,sell_condition,duration)
+                results = trade_simulation(stock_id,buy_condition,sell_condition,duration)
                 expect(results[0][0]).to eq 357200
             end            
         end
@@ -74,7 +75,7 @@ RSpec.describe ApplicationHelper, type: :helper do
                 buy_condition = 0.4
                 sell_condition = 1.0
                 duration = 20
-                results = simulation(stock_id,buy_condition,sell_condition,duration)
+                results = trade_simulation(stock_id,buy_condition,sell_condition,duration)
                 expect(results[0][0]).to eq 80000
             end            
         end
@@ -86,22 +87,21 @@ RSpec.describe ApplicationHelper, type: :helper do
                 buy_condition = 50000.0
                 sell_condition = -50000.0
                 duration = 10
-                results = simulation(stock_id,buy_condition,sell_condition,duration)
+                results = trade_simulation(stock_id,buy_condition,sell_condition,duration)
                 expect(results[0][0]).to eq 1000000
             end            
         end
     
         context "when selected stock_id isn't exist, " do
-            it "returns error message included -couldn't find-" do
+            it "returns error message included -There are not any Stock Prices-" do
                 stock_id = "123456"
                 buy_condition = 1.5
                 sell_condition = -0.6
                 duration = 10
                 
-                e = simulation(stock_id,buy_condition,sell_condition,duration)
-                expect(e).to include "Couldn't find"
+                e = trade_simulation(stock_id,buy_condition,sell_condition,duration)
+                expect(e).to include "There are not any Stock Prices"
             end
         end
     end
-
 end

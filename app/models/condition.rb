@@ -1,6 +1,6 @@
 class Condition < ApplicationRecord
 
-    include ApplicationHelper
+    include TradeSimulation
 
     validates :buy_condition, presence: true, numericality: true
     validates :sell_condition, presence: true, numericality: true
@@ -17,9 +17,9 @@ class Condition < ApplicationRecord
     # private
     
     def set_interest
-        results = simulation(self.stock_id, self.buy_condition, self.sell_condition, self.duration)
+        results = trade_simulation(self.stock_id, self.buy_condition, self.sell_condition, self.duration)
         if !interest
-            results = simulation(self.stock_id, self.buy_condition, self.sell_condition, self.duration)
+            results = trade_simulation(self.stock_id, self.buy_condition, self.sell_condition, self.duration)
             if results
                 self.interest = results[2][0]
             end

@@ -1,6 +1,6 @@
 desc "This task is called by the Heroku scheduler add-on"
 task :fetch_stock_info => :environment do
-    puts "get_stock_info"
+    puts "fetch_stock_info"
     puts "it works."
     
     benchmark_result = Benchmark.realtime do
@@ -53,6 +53,25 @@ task :fetch_stock_info => :environment do
                 puts Price.where(stock_id: stock.id).count 
             end
         end
+    puts "処理時間:"
+    puts benchmark_result
+end
+
+task :recalculate_interest => :environment do
+    include TradeSimulation
+
+    puts "recalculate_interest"
+    puts "it works."
+    benchmark_result = Benchmark.realtime do
+
+        Condition.all.each do |condition|
+            simulation_condition = [condition[:stock_id], condition[:buy_condition], condition[:sell_condition], condition[:duration]]
+            simulation_results = trade_simulation(*simulation_condition)
+            condition.interest = simulation_results[2][0]
+            condition.save
+        end
+
+    end
     puts "処理時間:"
     puts benchmark_result
 end

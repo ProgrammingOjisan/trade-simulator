@@ -45,10 +45,6 @@ class ConditionsController < ApplicationController
     end
         
   end
-
-  def update
-    create
-  end
   
   private
   

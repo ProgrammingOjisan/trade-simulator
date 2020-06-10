@@ -15,7 +15,7 @@ before_action :require_user_logged_out, only: [:new, :create]
   end
 
   def create
-    @user = User.new
+    @user = User.new(user_params)
     
     if @user.save
       flash[:success] = "Succeeded"

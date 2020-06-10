@@ -6,11 +6,11 @@
     <% end %>
 
     <div class="form-group row text-sm-nowrap">
-        <div class="col-md-8 offset-1 offset-md-2 mt-5 mb-2">
+        <div class="col-md-8 offset-md-2 mt-5 mb-2">
             <%= render 'layouts/error_messages', model: f.object %>
             <p class="m-0 p-description">もし</p>
         </div>
-        <div class="col-md-9 offset-2 offset-md-3 row mb-4">
+        <div class="col-md-9 offset-1 offset-md-3 row mb-4">
             <div class="mr-3 mr-sm-4">
                 <%= f.collection_select :stock_id, Stock.all, :id, :name, class: "form-control", id: "stock_id" %>
             </div>
@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="col-md-9 offset-2 offset-md-3 row mb-4">
+        <div class="col-md-9 offset-1 offset-md-3 row mb-4">
             <div class="mr-3 mr-sm-4">
                 <%= f.select(:buy_condition, @condition_datalist, class: "form-control" ) %>
             </div>
@@ -29,7 +29,7 @@
         </div>
 
 
-        <div class="col-md-9 offset-2 offset-md-3 row mb-4">
+        <div class="col-md-9 offset-1 offset-md-3 row mb-4">
             <div class="mr-3 mr-sm-4 p-description">
                 <%= f.select(:sell_condition, @condition_datalist, class: "form-control" ) %>
             </div>
@@ -39,7 +39,7 @@
         </div>
 
 
-        <div class="col-md-9 offset-2 offset-md-3 row mb-5">
+        <div class="col-md-9 offset-1 offset-md-3 row mb-5">
             <div id="duration_form">
             </div>
             <div>

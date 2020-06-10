@@ -93,9 +93,9 @@
 <% end %>
 <!--form_withのなかでさらにfavorite用のformを呼び出すと-->
 <!--ワンタイムトークンが干渉しあってしてしまうので先に閉じている-->
-        <% if @condition.id %>
+        <% if @existing_condition %>
             <div class=" btn-favorite mb-5">
-                <%= render "favorites/favorite_button", condition: @condition %>
+                <%= render "favorites/favorite_button", condition: @existing_condition %>
             </div>
         <% end %>
     </div>

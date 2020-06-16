@@ -1,5 +1,6 @@
 benchmark_result = Benchmark.realtime do
 # User sample
+User.create(name: "Guest", email: "guest@login.com", password: "guestlogin")
 user_name = [
         "Aneesah",
         "Karson",

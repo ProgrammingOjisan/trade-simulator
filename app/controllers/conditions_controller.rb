@@ -9,6 +9,7 @@ class ConditionsController < ApplicationController
     set_form_datalist
     @condition = Condition.find(params[:id])
     @results = trade_simulation(@condition.stock_id, @condition.buy_condition, @condition.sell_condition, @condition.duration)
+    @existing_condition = @condition
     @preview_mode = true
   end
 
@@ -19,12 +20,7 @@ class ConditionsController < ApplicationController
 
   def create
     set_form_datalist
-    existing_condition = Condition.find_by(stock_id: params[:condition][:stock_id], buy_condition: params[:condition][:buy_condition], sell_condition: params[:condition][:sell_condition], duration: params[:condition][:duration])
-    if existing_condition.present?
-      @condition = existing_condition
-    else
-      @condition = Condition.new(condition_params)
-    end
+    @condition = Condition.new(condition_params)
     @results = trade_simulation(@condition.stock_id, @condition.buy_condition, @condition.sell_condition, @condition.duration)
 
     if @results.include? "Error"
@@ -32,6 +28,8 @@ class ConditionsController < ApplicationController
             render :new
     elsif params[:preview]
         @preview_mode = true
+        # 選択した条件がすでに存在する場合はfavoriteボタンを表示させたいのでフラグを立てる
+        @existing_condition = Condition.find_by(stock_id: params[:condition][:stock_id], buy_condition: params[:condition][:buy_condition], sell_condition: params[:condition][:sell_condition], duration: params[:condition][:duration])
         render :new
     else
         @condition.interest = @results[2][0] if @results

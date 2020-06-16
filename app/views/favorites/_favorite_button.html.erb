@@ -1,8 +1,8 @@
 <% if current_user == nil %>
-    <%= link_to login_path, class: "btn btn-link" do %>
+    <%= button_to login_path, class: "btn btn-link" do %>
         <i class="far fa-heart"></i>
     <% end %>
-    <span class="text-muted"><%= count_favorites(condition) if count_favorites(condition) > 0 %></span>
+    <span><%= count_favorites(condition) if count_favorites(condition) > 0 %></span>
 <% else %>
     <% if current_user.favorite?(condition) %>
         <%= form_with(model: current_user.favorites.find_by(condition_id: condition.id), scope: :favorite, local: true, method: :delete) do |f| %>

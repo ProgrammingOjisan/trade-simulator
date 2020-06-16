@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-
 select {
     -webkit-appearance: none;
     appearance: none;
@@ -10,36 +9,70 @@ select {
     border: 0px;
     border-bottom: 1px;
     border-style: solid;
-    border-color: #bbb;
+    border-color: #999;
     font-weight: bold;
 }
 
+.guest-info{ 
+    font-size: 0.9rem; 
+}
+
 .btn-toppage {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    color: black;
     background-color: white;
     border: 1px;
     border-style: solid;
-    border-color: black;
-    color: black;
-    
+    border-color: #999;
+    border-radius: 2rem;
 }
 
-.display-4{
-    font-size: 2rem;
-    font-weight: normal !important;
+
+.btn-favorite button {
+    color: #5a6268!important;
+    font-size: 1.75rem!important;
+    background-color: white;
+    margin-left: 1rem;
 }
 
-th > p {
-    font-size: 16px;
-    color: gray;
-    margin-bottom: 0;
+
+.btn-favorite span {
+    display: none;
+}
+
+.p-description {
+    font-size: 1.75rem;
+    font-weight: normal;
+}
+
+.result-section{
+    border: 1px solid #bbb;
+    border-radius: 2rem;
+}
+
+.table-result{
+    font-size: 1rem;
+}
+
+.table-result * {
+    padding-top: 6px!important;
+    padding-bottom: 6px!important;
+    // font-weight: normal!important;
 }
 
 .thead-result{
-    color: white;
-    background-color: #9f9f9f;
-    border: 0;
+    background-color: #eee;
 }
+.table thead th{
+    border-bottom: none;
+
+}
+th > p {
+    margin-bottom: 0;
+    color: gray;
+    font-size: 0.75rem;
+}
+
 
 @media screen and (max-width:576px){
     html {
@@ -54,8 +87,9 @@ th > p {
     .btn-toppage {
         font-size: 1rem;
     }
-    .display-4{
-    font-size: 1rem;
+    .p-description {
+        font-size: 1rem;
     }
+
 
 }

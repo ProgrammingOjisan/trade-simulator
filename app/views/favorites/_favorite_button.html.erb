@@ -1,6 +1,6 @@
 <% if current_user == nil %>
-    <%= button_to login_path, class: "btn btn-link" do %>
-        <i class="far fa-heart"></i>
+    <%= link_to login_path do %>
+        <button class="btn btn-link"><i class="far fa-heart"></i></button>
     <% end %>
     <span><%= count_favorites(condition) if count_favorites(condition) > 0 %></span>
 <% else %>

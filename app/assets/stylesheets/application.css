@@ -20,3 +20,7 @@ h1 {
     font-weight: lighter;
     margin: 1em;
 }
+
+.navbar-brand, .nav-item{
+    font-weight: lighter;
+}

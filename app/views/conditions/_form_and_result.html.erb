@@ -6,48 +6,51 @@
     <% end %>
 
     <div class="form-group row text-sm-nowrap">
-        <div class="col-md-8 offset-md-2 mt-5 mb-2">
+        <div class="col-md-8 offset-md-2 mt-5 mb-2 target">
             <%= render 'layouts/error_messages', model: f.object %>
-            <p class="m-0 p-description">もし</p>
+            <p class="m-0 p-description introduction-farm">もし</p>
         </div>
-        <div class="col-md-9 offset-1 offset-md-3 row mb-4">
-            <div class="mr-3 mr-sm-4">
-                <%= f.collection_select :stock_id, Stock.all, :id, :name, class: "form-control", id: "stock_id" %>
+        <!--<div class="row target m-0 p-0">-->
+            <div class="col-md-9 offset-1 offset-md-3 row mb-4 mr-0 target">
+                <div class="mr-3 mr-sm-4" id="step1">
+                    <%= f.collection_select :stock_id, Stock.all, :id, :name, class: "form-control", id: "stock_id" %>
+                </div>
+                <div>
+                    <p class="mt-3 mt-sm-4 p-description">が、</p>
+                </div>
             </div>
-            <div>
-                <p class="mt-3 mt-sm-4 p-description">が、</p>
+    
+            <div class="col-md-9 offset-1 offset-md-3 row mb-4 mr-0 target">
+                <div class="mr-3 mr-sm-4" id="step2">
+                    <%= f.select(:buy_condition, @condition_datalist, class: "form-control" ) %>
+                </div>
+                <div>
+                    <p class="mt-3 mt-sm-4 p-description">になったら買い</p>
+                </div>
             </div>
-        </div>
+    
+    
+            <div class="col-md-9 offset-1 offset-md-3 row mb-4 mr-0 target">
+                <div class="mr-3 mr-sm-4 p-description" id="step3">
+                    <%= f.select(:sell_condition, @condition_datalist, class: "form-control" ) %>
+                </div>
+                <div>
+                    <p class="mt-3 mt-sm-4 p-description">になったら売るを</p>
+                </div>
+            </div>
+    
+    
+            <div class="col-md-9 offset-1 offset-md-3 row mb-5 mr-0 target">
+                <div class="m-0 p-0" id="step4">
+                    <div id="duration_form"></div>
+                </div>
+                <div>
+                    <p class="ml-3 ml-sm-4 mt-3 mt-sm-4 mb-0 p-description">くりかえしたら</p>
+                </div>
+            </div>
+        <!--</div>-->
 
-        <div class="col-md-9 offset-1 offset-md-3 row mb-4">
-            <div class="mr-3 mr-sm-4">
-                <%= f.select(:buy_condition, @condition_datalist, class: "form-control" ) %>
-            </div>
-            <div>
-                <p class="mt-3 mt-sm-4 p-description">になったら買い</p>
-            </div>
-        </div>
-
-
-        <div class="col-md-9 offset-1 offset-md-3 row mb-4">
-            <div class="mr-3 mr-sm-4 p-description">
-                <%= f.select(:sell_condition, @condition_datalist, class: "form-control" ) %>
-            </div>
-            <div>
-                <p class="mt-3 mt-sm-4 p-description">になったら売るを</p>
-            </div>
-        </div>
-
-
-        <div class="col-md-9 offset-1 offset-md-3 row mb-5">
-            <div id="duration_form">
-            </div>
-            <div>
-                <p class="ml-3 ml-sm-4 mt-3 mt-sm-4 mb-0 p-description">くりかえしたら</p>
-            </div>
-        </div>
-
-        <%= f.submit "どうなる？", class: "col-4 offset-4 mt-2 mb-5 btn btn-secondary btn-block btn-toppage", name: "preview" %>
+        <%= f.submit "どうなる？", class: "col-4 offset-4 mt-2 mb-5 btn btn-secondary btn-block btn-toppage target", name: "preview", id: "step5" %>
 
         <% if @preview_mode %>
             <div class="col-md-8 offset-md-2 mb-5 pt-2" id="result">
@@ -99,12 +102,3 @@
             </div>
         <% end %>
     </div>
-<script type="text/javascript">
-	$(function(){
-	    const SPEED_MS = 200;
-		const TARGET = $("#result");
-		const POSITION = TARGET.offset().top;
-		$('body,html').animate({scrollTop:POSITION}, SPEED_MS, 'swing');
-		return false;
-	});
-</script>

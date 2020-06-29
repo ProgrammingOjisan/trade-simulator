@@ -24,3 +24,17 @@ h1 {
 .navbar-brand, .nav-item{
     font-weight: lighter;
 }
+
+.pagination a{
+    color: #5a6268;
+}
+
+.pagination a:hover{
+    color: #5a6268;
+}
+
+.page-item.active .page-link{
+    background: #999;
+    border-color: #999;
+}
+

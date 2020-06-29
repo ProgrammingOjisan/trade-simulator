@@ -11,7 +11,7 @@ module TradeSimulation
         current_capital = [start_capital,start_capital]
         has_stock = [nil,nil]
         # has_stock is 売買状況を把握するための変数
-        valuation_log = [{name: "YOUR CONDITION", data: {}},{name: Stock.find(stock_id).name, data: {}}]
+        valuation_log = [{name: "YOUR CONDITION", data: {}},{name: (Stock.find(stock_id).name + " [" + Stock.find(stock_id).code + "]"), data: {}}]
         active_trade_log = valuation_log[0]
         passive_trade_log = valuation_log[1]
         

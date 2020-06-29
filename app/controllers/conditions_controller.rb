@@ -8,6 +8,7 @@ class ConditionsController < ApplicationController
   def show
     set_form_datalist
     @condition = Condition.find(params[:id])
+    @ticker_symbol = Stock.find(@condition.stock_id).code
     @results = trade_simulation(@condition.stock_id, @condition.buy_condition, @condition.sell_condition, @condition.duration)
     @existing_condition = @condition
     @preview_mode = true
@@ -30,9 +31,11 @@ class ConditionsController < ApplicationController
         @preview_mode = true
         # 選択した条件がすでに存在する場合はfavoriteボタンを表示させたいのでフラグを立てる
         @existing_condition = Condition.find_by(stock_id: params[:condition][:stock_id], buy_condition: params[:condition][:buy_condition], sell_condition: params[:condition][:sell_condition], duration: params[:condition][:duration])
+        @ticker_symbol = Stock.find(@existing_condition.stock_id).code
         render :new
     else
         @condition.interest = @results[2][0] if @results
+        @ticker_symbol = Stock.find(@condition.stock_id).code
         if @condition.save
             flash[:success] = "saved"
             redirect_to conditions_url

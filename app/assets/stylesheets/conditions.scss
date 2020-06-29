@@ -7,10 +7,58 @@ select {
     appearance: none;
     font-size: 3rem;
     border: 0px;
-    border-bottom: 1px;
-    border-style: solid;
-    border-color: #999;
     font-weight: bold;
+    background-color: transparent;
+}
+
+.introjs-tooltip{
+    color: black;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 20px;
+    min-width: 230px;
+}
+
+.introjs-tooltipbuttons .introjs-button{
+    color:black;
+}
+
+.introjs-prevbutton.introjs-fullbutton {
+    border: none;
+}
+.introjs-helperLayer {
+    background-color: rgba(255,255,255,1);
+}
+
+.introjs-arrow.top, .introjs-arrow.top-middle, .introjs-arrow.top-right {
+    border-color: transparent transparent rgba(255, 255, 255, 1);
+}
+
+.introjs-overlay{
+    background: -webkit-radial-gradient(center,ellipse farthest-corner,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.4) 100%);
+}
+
+.introjs-helperNumberLayer {
+    background: #666;
+    background: -webkit-linear-gradient(top, #666 0%, #666 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #666), color-stop(100%, #666));
+    background: -moz-linear-gradient(top, #666 0%, #666 100%);
+    background: -ms-linear-gradient(top, #666 0%, #666 100%);
+    background: -o-linear-gradient(top, #666 0%, #666 100%);
+    background: linear-gradient(to bottom, #666 0%, #666 100%);
+}
+
+.introjs-tooltiptext > p{
+    font-weight: bold;
+}
+
+p.first-intro{
+    font-weight: normal;
+}
+
+p.annotation{
+    font-size: 0.75rem;
+    font-weight: normal;
+    color: gray;
 }
 
 .btn-toppage {
@@ -22,51 +70,95 @@ select {
     border-color: #999;
     border-radius: 2rem;
 }
+.btn-favorite{
+    color: #5a6268;
+}
 
+.btn-favorite:hover {
+    color: #999;
+}
 
-.btn-favorite button {
-    color: #5a6268!important;
-    font-size: 1.75rem!important;
+.card-body a:hover {
+    text-decoration: none;
+}
+
+.btn-top-favorite button {
+    font-size: 1.75rem;
     background-color: white;
     margin-left: 1rem;
 }
 
 
-.btn-favorite span {
+.btn-top-favorite span {
     display: none;
 }
 
 .p-description {
     font-size: 1.75rem;
     font-weight: normal;
+    padding-top: 1.5rem;
+    padding-bottom: 0;
+    margin: 0;
 }
 
-.result-section{
-    border: 1px solid #bbb;
-    border-radius: 2rem;
+.div-chartjs, .table-result{
+    border-radius: 1rem!important;
+    background-color: #ffffff;
+    border: 1px solid #999;
+}
+
+.div-chartjs{
+    padding:8px;
 }
 
 .table-result{
     font-size: 1rem;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #999;
 }
 
 .table-result * {
     padding-top: 6px!important;
     padding-bottom: 6px!important;
-    // font-weight: normal!important;
 }
 
-.thead-result{
-    background-color: #eee;
+tr{
+    background: white;
 }
+
 .table thead th{
     border-bottom: none;
-
+    border-top: none;
+    background: #999;
+    color: white;
 }
+
+.th-left{
+    border-radius: 1rem 0 0 0!important;
+}
+
+.th-right{
+    border-radius: 0  1rem 0 0!important;
+}
+.td-left{
+    border-radius: 0 0 0 1rem!important;
+}
+
+.td-right{
+    border-radius: 0 0 1rem 0!important;
+}
+
+
 th > p {
     margin-bottom: 0;
     color: gray;
     font-size: 0.75rem;
+}
+
+.div-underline{
+    border-bottom: 1px solid #999;
+
 }
 
 
@@ -85,7 +177,11 @@ th > p {
     }
     .p-description {
         font-size: 1rem;
+        padding-top: 1rem;
     }
-
+    .btn-top-favorite button{
+        padding-top: 0;
+        font-size: 1.5rem;
+    }
 
 }

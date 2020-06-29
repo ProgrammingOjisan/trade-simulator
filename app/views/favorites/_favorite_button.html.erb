@@ -1,13 +1,13 @@
 <% if current_user == nil %>
     <%= link_to login_path do %>
-        <button class="btn btn-link"><i class="far fa-heart"></i></button>
+        <button class="btn btn-link btn-favorite"><i class="far fa-heart"></i></button>
     <% end %>
     <span><%= count_favorites(condition) if count_favorites(condition) > 0 %></span>
 <% else %>
     <% if current_user.favorite?(condition) %>
         <%= form_with(model: current_user.favorites.find_by(condition_id: condition.id), scope: :favorite, local: true, method: :delete) do |f| %>
             <%= hidden_field_tag :condition_id, condition.id %>
-            <%= button_tag("unfavorite", class: "btn btn-link") do %>
+            <%= button_tag("unfavorite", class: "btn btn-link btn-favorite") do %>
                 <i class="fas fa-heart"></i>
             <% end %>
             <span>
@@ -17,7 +17,7 @@
     <% else %>
         <%= form_with(model: current_user.favorites.build, scope: :favorite, local: true) do |f| %>
             <%= hidden_field_tag :condition_id, condition.id %>
-            <%= button_tag("favorite", class: "btn btn-link") do %>
+            <%= button_tag("favorite", class: "btn btn-link btn-favorite") do %>
                 <i class="far fa-heart"></i>
             <% end %>
             <span>

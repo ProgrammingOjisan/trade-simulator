@@ -1,6 +1,12 @@
 $(document).on('turbolinks:load', function() {
+
   changeDurationSelectbox();
   scrollToResult();
+	
+  // 	turbolinkによりscrollToResult()実行後opacityが0のままになってしまうので初期化
+	$('head').append(
+		'<style type="text/css">.target{opacity: 1;}'
+	);
 
   // 初回訪問時のみ実行
   if (location.pathname == "/"){
@@ -21,6 +27,7 @@ $(document).on('change', '#condition_stock_id', function() {
 });
 
 function selectboxFadein(){
+
   // プレビューモードではない場合にフェードインアニメーションを追加
   var previewElem = $("#result")
   if (previewElem[0] == null){

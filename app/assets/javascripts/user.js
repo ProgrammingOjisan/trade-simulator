@@ -84,7 +84,7 @@ function startIntro(){
     },
     {
       element: '#step1',
-      intro: '<p>シミュレーションしたい銘柄<br>を選択します。</p>',
+      intro: '<p>シミュレーションしたい銘柄を選択します。</p>',
       position: 'bottom',
     },
     {
@@ -97,7 +97,7 @@ function startIntro(){
     },
     {
       element: '#step4',
-      intro: '<p>シミュレーションを行う期間<br>を指定します。</p><p class="annotation">※銘柄によって指定できる期間は異なります。</p>',
+      intro: '<p>シミュレーションを行う期間を指定します。</p><p class="annotation">※銘柄によって指定できる期間は異なります。</p>',
     },
     {
       element: '#step5',

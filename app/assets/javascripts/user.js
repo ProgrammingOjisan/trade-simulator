@@ -1,7 +1,6 @@
 $(document).on('turbolinks:load', function() {
 
   changeDurationSelectbox();
-  scrollToResult();
 	
   // 	turbolinkによりscrollToResult()実行後opacityが0のままになってしまうので初期化
 	$('head').append(
@@ -16,12 +15,12 @@ $(document).on('turbolinks:load', function() {
       localStorage.setItem(keyName, keyValue);
 
       selectboxFadein();
-      // intro実行前に再度チェックしfadein実行中のページ遷移に対応
-      if (location.pathname == "/"){
-        setTimeout(startIntro, 3300);
-      }
+      setTimeout(startIntro, 3300);
     }
   }
+  
+  scrollToResult();
+
 });
 
 $(document).on('change', '#condition_stock_id', function() {
@@ -49,7 +48,7 @@ function selectboxFadein(){
 function scrollToResult(){
 	const TARGET = $("#result");
     if (TARGET[0]){
-      const SPEED_MS = 200;
+      const SPEED_MS = 400;
     	const POSITION = TARGET.offset().top;
     	$('body,html').animate({scrollTop:POSITION}, SPEED_MS, 'swing');
   }

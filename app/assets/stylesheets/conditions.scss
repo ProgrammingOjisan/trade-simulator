@@ -15,7 +15,8 @@ select {
     color: black;
     background-color: rgba(255, 255, 255, 1);
     padding: 20px;
-    min-width: 230px;
+    min-width: 200px;
+    max-width: 200px;
 }
 
 .introjs-tooltipbuttons .introjs-button{
@@ -31,8 +32,14 @@ select {
 
 .introjs-arrow.top, .introjs-arrow.top-middle, .introjs-arrow.top-right {
     border-color: transparent transparent rgba(255, 255, 255, 1);
+    top: -20px;
+    left: 55px;
 }
-
+.introjs-arrow.bottom, .introjs-arrow.bottom-middle, .introjs-arrow.bottom-right {
+    border-color: rgba(255, 255, 255, 1) transparent transparent;
+    bottom: -20px;
+    left: 55px;
+}
 .introjs-overlay{
     background: -webkit-radial-gradient(center,ellipse farthest-corner,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.4) 100%);
 }

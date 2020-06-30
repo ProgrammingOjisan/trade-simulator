@@ -15,9 +15,11 @@ $(document).on('turbolinks:load', function() {
     if (localStorage.getItem(keyName) == null) {
       localStorage.setItem(keyName, keyValue);
 
-      selectboxFadein();
-      setTimeout(startIntro, 3300);
-
+      // selectboxFadein();
+      // intro実行前に再度チェックしfadein実行中のページ遷移に対応
+      if (location.pathname == "/"){
+        setTimeout(startIntro, 0);
+      }
     }
   }
 });
@@ -82,15 +84,16 @@ function startIntro(){
     },
     {
       element: '#step1',
-      intro: '<p>シミュレーションしたい銘柄<br>を選択します。</p><p class="annotation">※ティッカーシンボルはシミュレーション結果に表示されます。</p>'
+      intro: '<p>シミュレーションしたい銘柄<br>を選択します。</p>',
+      position: 'bottom',
     },
     {
       element: '#step2',
-      intro: '<p>株価が前日からどれだけ動いたら買うか指定します。</p><p class="annotation">※前日終値と当日終値の変動幅が対象となります。</p>',
+      intro: '<p>株価が前日からどれだけ動いたら買うか指定します。</p>',
     },
     {
       element: '#step3',
-      intro: '<p>おなじように<br>売る条件を指定します。</p>',
+      intro: '<p>おなじように、<br>売る条件を指定します。</p>',
     },
     {
       element: '#step4',

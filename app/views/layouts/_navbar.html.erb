@@ -14,13 +14,13 @@
                 <%= link_to "Conditions", conditions_path, class: "nav-item nav-link" %>
                 <%= link_to "Users", users_path, class: "nav-item nav-link" %>
                 <div class="dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-controls="dropdownmenu" aria-expanded="false">
+                    <a class="nav-item nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-controls="dropdownmenu" aria-expanded="false">
                         <%= current_user.name %>
                     </a> 
-                    <div class="dropdown-menu dropdown-menu-right p-3" id="dropdownmenu">
-                        <%= link_to "MyPage", user_path(current_user), class: "derodown-item" %>
+                    <div class="dropdown-menu dropdown-menu-right p-3 nav-item" id="dropdownmenu">
+                        <%= link_to "MyPage", user_path(current_user), class: "dropdown-item nav-item" %>
                         <div class="dropdown-divider"></div>
-                        <%= link_to "Logout", logout_path, method: :delete, class: "derodown-item" %>
+                        <%= link_to "Logout", logout_path, method: :delete, class: "dropdown-item nav-item" %>
                     </div>
                 </div>                
             <% else %>

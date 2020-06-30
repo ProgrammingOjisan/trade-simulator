@@ -15,10 +15,10 @@ $(document).on('turbolinks:load', function() {
     if (localStorage.getItem(keyName) == null) {
       localStorage.setItem(keyName, keyValue);
 
-      // selectboxFadein();
+      selectboxFadein();
       // intro実行前に再度チェックしfadein実行中のページ遷移に対応
       if (location.pathname == "/"){
-        setTimeout(startIntro, 0);
+        setTimeout(startIntro, 3300);
       }
     }
   }

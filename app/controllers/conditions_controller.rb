@@ -16,7 +16,7 @@ class ConditionsController < ApplicationController
 
   def new
     set_form_datalist
-    @condition = Condition.new(stock_id:1, buy_condition: -0.01, sell_condition: 0.005, duration: 10)
+    @condition = Condition.new(stock_id:1, buy_condition: -0.01, sell_condition: 0.005, duration: 5)
   end
 
   def create

@@ -50,7 +50,8 @@ function scrollToResult(){
     if (TARGET[0]){
       const SPEED_MS = 400;
     	const POSITION = TARGET.offset().top;
-    	$('body,html').animate({scrollTop:POSITION}, SPEED_MS, 'swing');
+    	const BODY_PADDING_TOP = 57
+    	$('body,html').animate({scrollTop:( POSITION - BODY_PADDING_TOP)}, SPEED_MS, 'swing');
   }
 }
 

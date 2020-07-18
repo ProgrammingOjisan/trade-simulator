@@ -59,15 +59,16 @@
                     <thead class="thead-result">
                         <tr>
                             <th class="th-left"></th>
-                            <th class="text-right align-middle">指定の条件</th>
-                            <th class="th-right text-right align-middle"><%= @condition.stock.name %>
+                            <th class="text-center align-middle">指定の条件</th>
+                            <th class="th-right text-center align-middle"><%= @condition.stock.name %>
                                 <br>[<%= @ticker_symbol %>]
                             </th>
                         </tr>
                     </thead>
                     <tr>
                         <th class="text-center">元金</th>
-                        <td class="text-center" colspan="2"><%= @results[4].floor.to_s(:delimited) %> 円</td>
+                        <td class="text-right"><%= @results[4].floor.to_s(:delimited) %> 円</td>
+                        <td class="text-right"><%= @results[4].floor.to_s(:delimited) %> 円</td>
                     </tr> 
                     <tr>
                         <th class="text-center">評価額</th>

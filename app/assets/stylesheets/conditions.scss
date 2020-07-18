@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+
+
+
+// INTRO.JS
+
 select {
     -webkit-appearance: none;
     appearance: none;
@@ -68,6 +73,11 @@ p.annotation{
     color: gray;
 }
 
+
+
+
+// BUTTON
+
 .btn-toppage {
     font-size: 1.75rem;
     color: black;
@@ -85,10 +95,6 @@ p.annotation{
     color: #999;
 }
 
-.card-body a:hover {
-    text-decoration: none;
-}
-
 .btn-top-favorite button {
     font-size: 1.75rem;
     background-color: white;
@@ -100,6 +106,12 @@ p.annotation{
     display: none;
 }
 
+
+
+
+
+// DESCRIPTION ON TOPPAGE
+
 .p-description {
     font-size: 1.75rem;
     font-weight: normal;
@@ -107,6 +119,12 @@ p.annotation{
     padding-bottom: 0;
     margin: 0;
 }
+
+
+
+
+
+// CHART.JS
 
 .div-chartjs, .table-result{
     border-radius: 1rem!important;
@@ -118,6 +136,11 @@ p.annotation{
     padding:8px;
 }
 
+
+
+
+// TABLE
+
 .table-result{
     font-size: 1rem;
     border-collapse: separate;
@@ -128,6 +151,9 @@ p.annotation{
 .table-result * {
     padding-top: 6px!important;
     padding-bottom: 6px!important;
+}
+.table-result td{
+    border-left: 1px dotted #dee2e6;
 }
 
 tr{
@@ -168,6 +194,19 @@ th > p {
 
 }
 
+
+
+
+// CONDITIONS
+
+.card-body a:hover {
+    text-decoration: none;
+}
+
+
+
+
+// MOBILE
 
 @media screen and (max-width:576px){
     html {

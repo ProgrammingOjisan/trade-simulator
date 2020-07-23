@@ -88,11 +88,21 @@ p.annotation{
     border-radius: 2rem;
 }
 .btn-favorite{
-    color: #5a6268;
+    height: 3.5rem;
+    width: 3.5rem;
+    color: #ea4455;
+    border-radius: 50%;
+    border: 2px solid #ea4455;
+    text-align:center;
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+    margin: 0;
 }
 
 .btn-favorite:hover {
-    color: #999;
+    color: white;
+    background: #ea4455;
 }
 
 .btn-top-favorite button {
@@ -225,9 +235,10 @@ th > p {
         font-size: 1rem;
         padding-top: 1rem;
     }
-    .btn-top-favorite button{
-        padding-top: 0;
-        font-size: 1.5rem;
+    .btn-favorite{
+    position: fixed;
+    bottom: 2rem;
+    right: 1rem;
+    margin: 0;
     }
-
 }

@@ -1,7 +1,6 @@
 class ConditionsController < ApplicationController
 
   def index
-    @stocks = Stock.all
     @conditions = Condition.order(id: :desc).page(params[:page]).per(9)
   end
 
@@ -10,42 +9,27 @@ class ConditionsController < ApplicationController
     @condition = Condition.find(params[:id])
     @ticker_symbol = Stock.find(@condition.stock_id).code
     @results = trade_simulation(@condition.stock_id, @condition.buy_condition, @condition.sell_condition, @condition.duration)
-    @existing_condition = @condition
-    @preview_mode = true
+    @show_result = true
   end
 
   def new
     set_form_datalist
-    @condition = Condition.new(stock_id:1, buy_condition: -0.01, sell_condition: 0.005, duration: 5)
+    @condition = Condition.new(stock_id:1, buy_condition: -0.01, sell_condition: 0.005, duration: 20)
   end
-
+  
   def create
     set_form_datalist
-    @condition = Condition.new(condition_params)
+    @condition = Condition.find_or_create_by(condition_params)
     @results = trade_simulation(@condition.stock_id, @condition.buy_condition, @condition.sell_condition, @condition.duration)
+
     if @results.include? "Error"
             flash.now[:danger] = @results
             render :new
-    elsif params[:preview]
-        @preview_mode = true
-        # 選択した条件がすでに存在する場合はfavoriteボタンを表示させたいのでフラグを立てる
-        @existing_condition = Condition.find_by(stock_id: params[:condition][:stock_id], buy_condition: params[:condition][:buy_condition], sell_condition: params[:condition][:sell_condition], duration: params[:condition][:duration])
-        if @existing_condition
-          @ticker_symbol = Stock.find(@existing_condition.stock_id).code 
-        else
-          @ticker_symbol = Stock.find(params[:condition][:stock_id]).code
-        end
-        render :new
     else
-        @condition.interest = @results[2][0] if @results
-        @ticker_symbol = Stock.find(@condition.stock_id).code
-        if @condition.save
-            flash[:success] = "saved"
-            redirect_to conditions_url
-        else
-            flash.now[:danger] = "failed"
-            render :new
-        end
+      @show_result = true
+      @condition.interest = @results[2][0] if @results
+      @ticker_symbol = Stock.find(@condition.stock_id).code
+      render :new
     end
   end
   

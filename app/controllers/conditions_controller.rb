@@ -3,6 +3,10 @@ class ConditionsController < ApplicationController
   def index
     @conditions = Condition.order(id: :desc).page(params[:page]).per(9)
   end
+  
+  def ranking
+    @conditions = Condition.order(interest: :desc, duration: :desc).first(20)
+  end
 
   def show
     set_form_datalist

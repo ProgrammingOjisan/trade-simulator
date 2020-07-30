@@ -87,7 +87,21 @@ p.annotation{
     border-color: #999;
     border-radius: 2rem;
 }
+
 .btn-favorite{
+    color: #ea4455;
+}
+
+.btn-favorite:hover{
+    color: #ff6475;
+}
+
+.card-body .btn-favorite{
+    padding-top: 5px;
+    padding-bottom: 7px;
+}
+
+.div-top-favorite .btn-favorite{
     height: 3.5rem;
     width: 3.5rem;
     color: #ea4455;
@@ -100,19 +114,18 @@ p.annotation{
     margin: 0;
 }
 
-.btn-favorite:hover {
+.div-top-favorite .btn-favorite:hover {
     color: white;
     background: #ea4455;
 }
 
-.btn-top-favorite button {
+.div-top-favorite button {
     font-size: 1.75rem;
     background-color: white;
     margin-left: 1rem;
 }
 
-
-.btn-top-favorite span {
+.div-top-favorite span {
     display: none;
 }
 
@@ -213,6 +226,10 @@ th > p {
     text-decoration: none;
 }
 
+.card-header {
+    font-size: 2rem;
+}
+
 
 
 
@@ -235,8 +252,7 @@ th > p {
         font-size: 1rem;
         padding-top: 1rem;
     }
-    .btn-favorite{
-    position: fixed;
+    .div-top-favorite .btn-favorite{
     bottom: 2rem;
     right: 1rem;
     margin: 0;

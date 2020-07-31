@@ -162,7 +162,7 @@ p.annotation{
 
 
 
-// TABLE
+// RESULT_TABLE
 
 .table-result{
     font-size: 1rem;
@@ -179,11 +179,11 @@ p.annotation{
     border-left: 1px dotted #dee2e6;
 }
 
-tr{
+.table-result tr{
     background: white;
 }
 
-.table thead th{
+.table-result thead th{
     border-bottom: none;
     border-top: none;
     background: #999;
@@ -230,8 +230,26 @@ th > p {
     font-size: 2rem;
 }
 
+// RANKING
 
+.table-ranking thead{
+    background: #fff;
+}
 
+.table-ranking td, .table-ranking th{
+    vertical-align: middle;
+}
+
+.table-ranking-pc{
+    display: table;
+}
+.table-ranking-sp{
+    display: none;
+}
+.table-ranking-interest{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
 
 // MOBILE
 
@@ -257,4 +275,27 @@ th > p {
     right: 1rem;
     margin: 0;
     }
+    .table-ranking-pc{
+        display: none;
+    }
+    .table-ranking-sp{
+        display: table;
+    }
+    .table-ranking-interest{
+        font-size: 1.25rem;
+    }
+    .a-ranking-sp {
+        display: block;
+        color: #212529;
+    }
+    .td-ranking-success a{
+        color: #28a745!important;
+    }
+    .td-ranking-danger a{
+        color: #dc3545!important;
+    }
+    .a-ranking-sp:hover {
+        text-decoration: none;
+    }
+
 }

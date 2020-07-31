@@ -16,7 +16,7 @@ module ConditionsHelper
 		elsif price_length >= 245*2
     			duration_datalist.slice(0..1)
 		elsif price_length >= 245
-    			duration_datalist.slice(0)
+    			{"1年間": 1}
     	else []
     	end
     end

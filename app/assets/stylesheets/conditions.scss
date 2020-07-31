@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+
+
+
+// INTRO.JS
+
 select {
     -webkit-appearance: none;
     appearance: none;
@@ -68,6 +73,11 @@ p.annotation{
     color: gray;
 }
 
+
+
+
+// BUTTON
+
 .btn-toppage {
     font-size: 1.75rem;
     color: black;
@@ -77,28 +87,53 @@ p.annotation{
     border-color: #999;
     border-radius: 2rem;
 }
+
 .btn-favorite{
-    color: #5a6268;
+    color: #ea4455;
 }
 
-.btn-favorite:hover {
-    color: #999;
+.btn-favorite:hover{
+    color: #ff6475;
 }
 
-.card-body a:hover {
-    text-decoration: none;
+.card-body .btn-favorite{
+    padding-top: 5px;
+    padding-bottom: 7px;
 }
 
-.btn-top-favorite button {
+.div-top-favorite .btn-favorite{
+    height: 3.5rem;
+    width: 3.5rem;
+    color: #ea4455;
+    border-radius: 50%;
+    border: 2px solid #ea4455;
+    text-align:center;
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+    margin: 0;
+}
+
+.div-top-favorite .btn-favorite:hover {
+    color: white;
+    background: #ea4455;
+}
+
+.div-top-favorite button {
     font-size: 1.75rem;
     background-color: white;
     margin-left: 1rem;
 }
 
-
-.btn-top-favorite span {
+.div-top-favorite span {
     display: none;
 }
+
+
+
+
+
+// DESCRIPTION ON TOPPAGE
 
 .p-description {
     font-size: 1.75rem;
@@ -107,6 +142,12 @@ p.annotation{
     padding-bottom: 0;
     margin: 0;
 }
+
+
+
+
+
+// CHART.JS
 
 .div-chartjs, .table-result{
     border-radius: 1rem!important;
@@ -118,6 +159,11 @@ p.annotation{
     padding:8px;
 }
 
+
+
+
+// TABLE
+
 .table-result{
     font-size: 1rem;
     border-collapse: separate;
@@ -128,6 +174,9 @@ p.annotation{
 .table-result * {
     padding-top: 6px!important;
     padding-bottom: 6px!important;
+}
+.table-result td{
+    border-left: 1px dotted #dee2e6;
 }
 
 tr{
@@ -169,6 +218,23 @@ th > p {
 }
 
 
+
+
+// CONDITIONS
+
+.card-body a:hover {
+    text-decoration: none;
+}
+
+.card-header {
+    font-size: 2rem;
+}
+
+
+
+
+// MOBILE
+
 @media screen and (max-width:576px){
     html {
         font-size: 16px;
@@ -186,9 +252,9 @@ th > p {
         font-size: 1rem;
         padding-top: 1rem;
     }
-    .btn-top-favorite button{
-        padding-top: 0;
-        font-size: 1.5rem;
+    .div-top-favorite .btn-favorite{
+    bottom: 2rem;
+    right: 1rem;
+    margin: 0;
     }
-
 }

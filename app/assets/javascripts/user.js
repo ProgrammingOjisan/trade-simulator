@@ -55,9 +55,6 @@ function scrollToResult(){
   }
 }
 
-// function showSitetour(){
-//   localStorage.removeItem('visited');
-// }
 
 function changeDurationSelectbox(){
   let stockIdVal = $('#condition_stock_id').val();

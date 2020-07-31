@@ -7,7 +7,7 @@ module TradeSimulation
         start_date = latest_date.ago(duration.years)
     	stockdata = Price.where(stock_id: stock_id, date: start_date..latest_date).order(:date)	
 
-        start_capital = 1000000
+        start_capital = 10000
         current_capital = [start_capital,start_capital]
         has_stock = [nil,nil]
         # has_stock is 売買状況を把握するための変数

@@ -1,0 +1,47 @@
+<h1>Ranking</h1>
+
+    <table class="table table-hover table-responsive-md table-ranking table-ranking-pc">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">銘柄</th>
+          <th scope="col">利回り</th>
+          <th scope="col">買い条件</th>
+          <th scope="col">売り条件</th>
+          <th scope="col">期間</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @conditions.each_with_index do |condition, i| %>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= condition.stock.name %></td>
+          <td class="table-ranking-interest text-<%= condition.interest >= 0 ? "success" : "danger" %>"><%= "+" if condition.interest >= 0 %><%= (condition.interest * 100).round(1) %> %</td>
+          <td class="text-<%= condition.buy_condition >= 0 ? "success" : "danger" %>"><%= "+" if condition.buy_condition >= 0 %><%= (condition.buy_condition * 100).round(1) %> %</td>
+          <td class="text-<%= condition.sell_condition >= 0 ? "success" : "danger" %>"><%= "+" if condition.sell_condition >= 0 %><%= (condition.sell_condition * 100).round(1) %> %</td>
+          <td><%= condition.duration %> 年間</td>
+          <td><%= link_to "詳細", condition_path(condition, anchor: "result"), class: "btn btn-secondary btn-block" %></td>
+        </tr>
+        <% end%>
+      </tbody>
+    </table>
+    
+    <table class="table table-hover table-responsive-md table-ranking  table-ranking-sp">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">銘柄</th>
+          <th scope="col">利回り</th>
+        </tr>
+      </thead>
+      <tbody>
+         <% @conditions.each_with_index do |condition, i| %>
+        <tr>
+          <td><%= link_to condition_path(condition, anchor: "result"), class: "a-ranking-sp" do %><%= i+1 %><% end %></td>
+          <td><%= link_to condition_path(condition, anchor: "result"), class: "a-ranking-sp" do %><%= condition.stock.name %><% end %></td>
+          <td class="table-ranking-interest td-ranking-<%= condition.interest >= 0 ? "success" : "danger" %>"><%= link_to condition_path(condition, anchor: "result"), class: "a-ranking-sp" do %><%= "+" if condition.interest >= 0 %><%= (condition.interest * 100).round(1) %> %<% end %></td>
+        </tr>
+        <% end%>
+      </tbody>
+    </table>

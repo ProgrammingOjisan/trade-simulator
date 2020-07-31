@@ -11,6 +11,7 @@
         <div class="navbar-nav">
                 <%= link_to "How to use", root_path, onclick: "localStorage.removeItem('visited');", class: "nav-item nav-link" %>
                 <%= link_to "Simulation", root_path, class: "nav-item nav-link" %>
+                <%= link_to "Ranking", ranking_path, class: "nav-item nav-link" %>
                 <%= link_to "Conditions", conditions_path, class: "nav-item nav-link" %>
             <% if logged_in? %>
                 <%= link_to "Users", users_path, class: "nav-item nav-link" %>

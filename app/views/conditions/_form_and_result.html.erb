@@ -1,8 +1,8 @@
 <%= form_with(model: @condition, url:simulation_path, local: true) do |f| %>
     <% Stock.all.each do |stock| %>
-	<template id="stock_<%= stock.id %>">
-		<%= f.select(:duration, set_duration_datalist(Price.where(stock_id: stock.id).length), class: "form-control") %>
-	</template>
+    	<template id="stock_<%= stock.id %>">
+    		<%= f.select(:duration, set_duration_datalist(Price.where(stock_id: stock.id).length), class: "form-control") %>
+    	</template>
     <% end %>
 
     <div class="form-group row text-sm-nowrap">
@@ -49,56 +49,55 @@
             </div>
 
         <%= f.submit "どうなる？", class: "col-4 offset-4 mt-2 mb-5 btn btn-secondary btn-block btn-toppage target", name: "preview", id: "step5" %>
-
-        <% if @preview_mode %>
-            <div class="col-md-8 offset-md-2 mb-4 mb-sm-5 pt-2" id="result">
-                <div class="div-chartjs">
-                    <%= line_chart @results[3], colors: ["gray"], points: false, thousands: ","%>
-                </div>
-                <table class="mt-4 table table-result">
-                    <thead class="thead-result">
-                        <tr>
-                            <th class="th-left"></th>
-                            <th class="text-right align-middle">指定の条件</th>
-                            <th class="th-right text-right align-middle"><%= @condition.stock.name %>
-                                <br>[<%= @ticker_symbol %>]
-                            </th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <th class="text-center">元金</th>
-                        <td class="text-center" colspan="2"><%= @results[4].floor.to_s(:delimited) %> 円</td>
-                    </tr> 
-                    <tr>
-                        <th class="text-center">評価額</th>
-                        <td class="text-right"><%= @results[0][0].floor.to_s(:delimited) %> 円</td>
-                        <td class="text-right"><%= @results[0][1].floor.to_s(:delimited) %> 円</td>
-                    </tr> 
-                    <tr>
-                        <th class="text-center">損益</th>
-                        <td class="text-right text-<%= @results[1][0] >= 0 ? "success" : "danger" %>"><%= "+" if @results[1][0] >= 0 %><%= @results[1][0].floor.to_s(:delimited) %> 円</td>
-                        <td class="text-right text-<%= @results[1][1] >= 0 ? "success" : "danger" %>"><%= "+" if @results[1][1] >= 0 %><%= @results[1][1].floor.to_s(:delimited) %> 円</td>
-                    </tr> 
-                    <tr>
-                        <th class="text-center">利回り<p>(期間中)</p></th>
-                        <td class="text-right align-middle text-<%= @results[2][0] >= 0 ? "success" : "danger" %>"><%= "+" if @results[2][0] >= 0 %><%= (@results[2][0]*100).round(1) %> %</td>
-                        <td class="text-right align-middle text-<%= @results[2][1] >= 0 ? "success" : "danger" %>"><%= "+" if @results[2][1] >= 0 %><%= (@results[2][1]*100).round(1) %> %</td>
-                    </tr> 
-                    <tr>
-                        <th class="td-left text-center">利回り<p>(年換算)</p></th>
-                        <td class="text-right align-middle text-<%= @results[5][0] >= 0 ? "success" : "danger" %>"><%= "+" if @results[5][0] >= 0 %><%= (@results[5][0]*100).round(1) %> %</td>
-                        <td class="td-right text-right align-middle text-<%= @results[5][1] >= 0 ? "success" : "danger" %>"><%= "+" if @results[5][1] >= 0 %><%= (@results[5][1]*100).round(1) %> %</td>
-                    </tr> 
-                </table>
-            </div>
-            <%= f.submit "条件を保存", class: "col-4 offset-4 mb-5 btn btn-secondary btn-block btn-toppage" %>
-        <% end %>
-<% end %>
-<!--form_withのなかでさらにfavorite用のformを呼び出すと-->
-<!--ワンタイムトークンが干渉しあってしてしまうので先に閉じている-->
-        <% if @existing_condition %>
-            <div class="btn-top-favorite">
-                <%= render "favorites/favorite_button", condition: @existing_condition %>
-            </div>
-        <% end %>
     </div>
+<% end %>
+
+
+<% if @show_result %>
+    <div class="row">
+        <div class="col-md-8 offset-md-2 mb-5 mb-sm-5 pt-2" id="result">
+            <div class="div-chartjs">
+                <%= line_chart @results[3], colors: ["gray"], points: false, thousands: ","%>
+            </div>
+            <table class="mt-4 table table-result">
+                <thead class="thead-result">
+                    <tr>
+                        <th class="th-left"></th>
+                        <th class="text-center align-middle">指定の条件</th>
+                        <th class="th-right text-center align-middle"><%= @condition.stock.name %>
+                            <br>[<%= @ticker_symbol %>]
+                        </th>
+                    </tr>
+                </thead>
+                <tr>
+                    <th class="text-center">元金</th>
+                    <td class="text-right">$ <%= @results[4].floor.to_s(:delimited) %></td>
+                    <td class="text-right">$ <%= @results[4].floor.to_s(:delimited) %></td>
+                </tr> 
+                <tr>
+                    <th class="text-center">評価額</th>
+                    <td class="text-right">$ <%= @results[0][0].floor.to_s(:delimited) %></td>
+                    <td class="text-right">$ <%= @results[0][1].floor.to_s(:delimited) %></td>
+                </tr> 
+                <tr>
+                    <th class="text-center">損益</th>
+                    <td class="text-right text-<%= @results[1][0] >= 0 ? "success" : "danger" %>"><%= "+" if @results[1][0] >= 0 %>$ <%= @results[1][0].floor.to_s(:delimited) %></td>
+                    <td class="text-right text-<%= @results[1][1] >= 0 ? "success" : "danger" %>"><%= "+" if @results[1][1] >= 0 %>$ <%= @results[1][1].floor.to_s(:delimited) %></td>
+                </tr> 
+                <tr>
+                    <th class="text-center">利回り<p>(期間中)</p></th>
+                    <td class="text-right align-middle text-<%= @results[2][0] >= 0 ? "success" : "danger" %>"><%= "+" if @results[2][0] >= 0 %><%= (@results[2][0]*100).round(1) %> %</td>
+                    <td class="text-right align-middle text-<%= @results[2][1] >= 0 ? "success" : "danger" %>"><%= "+" if @results[2][1] >= 0 %><%= (@results[2][1]*100).round(1) %> %</td>
+                </tr> 
+                <tr>
+                    <th class="td-left text-center">利回り<p>(年換算)</p></th>
+                    <td class="text-right align-middle text-<%= @results[5][0] >= 0 ? "success" : "danger" %>"><%= "+" if @results[5][0] >= 0 %><%= (@results[5][0]*100).round(1) %> %</td>
+                    <td class="td-right text-right align-middle text-<%= @results[5][1] >= 0 ? "success" : "danger" %>"><%= "+" if @results[5][1] >= 0 %><%= (@results[5][1]*100).round(1) %> %</td>
+                </tr> 
+            </table>
+        </div>
+        <div class="div-top-favorite">
+            <%= render "favorites/favorite_button", condition: @condition %>
+        </div>
+    </div>
+<% end %>

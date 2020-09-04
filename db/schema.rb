@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2020_05_04_102327) do
     t.decimal "sell_condition", precision: 10, scale: 3
     t.integer "duration"
     t.decimal "interest", precision: 10, scale: 5
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["stock_id", "buy_condition", "sell_condition", "duration"], name: "conditions_restrict_index", unique: true
     t.index ["stock_id"], name: "index_conditions_on_stock_id"
   end
@@ -39,26 +39,26 @@ ActiveRecord::Schema.define(version: 2020_05_04_102327) do
     t.date "date"
     t.float "price"
     t.float "fluctuation"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["stock_id"], name: "index_prices_on_stock_id"
   end
 
   create_table "stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["code"], name: "index_stocks_on_code", unique: true
     t.index ["name"], name: "index_stocks_on_name", unique: true
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "name", limit: 255
-    t.string "email", limit: 255
-    t.string "password_digest", limit: 255
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "conditions", "stocks"

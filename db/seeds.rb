@@ -28,8 +28,8 @@ user_name.each_with_index do |name, i|
 end
 
 # Stock sample
-stock_name = ["DOW平均株価", "FACEBOOK", "NETFLIX", "SPOTIFY"]
-stock_code = ["DIA", "FB", "NFLX", "SPOT"]
+stock_name = ["DOW平均株価", "NETFLIX", "SPOTIFY"]
+stock_code = ["DIA", "NFLX", "SPOT"]
 stock_name.each_with_index do |name, i|
     Stock.create(name: name, code: stock_code[i])
 end

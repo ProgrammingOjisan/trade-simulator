@@ -10,7 +10,7 @@ task :fetch_stock_info => :environment do
                 logger = Logger.new("./api.log")
                 
                 base_url = "https://www.alphavantage.co/query?"
-                my_api_key = "LODEE8NFTIT9TIKT"
+                my_api_key = Rails.application.credentials.AlphaVantage[:access_key_id]
                 price_type = "TIME_SERIES_DAILY"
                 my_symbol = stock.code
                 Price.where(stock_id: stock.id).present? ? output_size = "compact" : output_size = "full"

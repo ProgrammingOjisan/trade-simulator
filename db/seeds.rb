@@ -1,4 +1,5 @@
 benchmark_result = Benchmark.realtime do
+
 # User sample
 User.create(name: "Guest", email: "guest@login.com", password: "guestlogin")
 user_name = [
@@ -28,8 +29,8 @@ user_name.each_with_index do |name, i|
 end
 
 # Stock sample
-stock_name = ["DOW平均株価", "FACEBOOK", "NETFLIX", "SPOTIFY"]
-stock_code = ["DIA", "FB", "NFLX", "SPOT"]
+stock_name = ["DOW平均株価", "TESLA", "UBER", "SPOTIFY"]
+stock_code = ["DIA", "TSLA" ,"UBER", "SPOT"]
 stock_name.each_with_index do |name, i|
     Stock.create(name: name, code: stock_code[i])
 end
@@ -38,7 +39,7 @@ Stock.all.each do |stock|
     logger = Logger.new("./api.log")
     
     base_url = "https://www.alphavantage.co/query?"
-    my_api_key = "LODEE8NFTIT9TIKT"
+    my_api_key = Rails.application.credentials.AlphaVantage[:access_key_id]
     price_type = "TIME_SERIES_DAILY"
     my_symbol = stock.code
     output_size = "full"

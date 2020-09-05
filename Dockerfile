@@ -16,7 +16,8 @@ RUN set -ex && \
     apt-get update -qq && \
     apt-get install -y yarn && \
     : "Install rails6.X latest version" && \
-    gem install rails --version="~>6.0.0"
+    gem install rails --version="~>6.0.0" && \
+    apt-get install -y vim
 
 ADD ./Gemfile $APP_ROOT
 ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
